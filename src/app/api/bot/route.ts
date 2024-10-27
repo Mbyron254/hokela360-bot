@@ -45,21 +45,35 @@ bot.use(mainMenu);
 bot.command("start", async (ctx) => {
   const userName = ctx.from?.first_name || "there";
   await ctx.reply(
-    `👋 Hello ${userName}!\n\nWelcome to FieldSales Pro - Your Ultimate Field Sales Management Solution!\n\n` +
+    `👋 Hello ${userName}!\n\nWelcome to Hokela 360 Pro - Manage field sales effortlessly with tools for surveys, merchandising, and engaging in-app games!\n\n` +
     `Our mini app helps you:\n` +
     `📍 Track your sales team in real-time\n` +
     `📊 Monitor performance metrics\n` +
-    `📝 Manage sales reports\n` +
+    `📝 Manage sales reports,surveys and merchandise\n` +
     `🎯 Set and track targets\n\n` +
     `How would you like to proceed?`,
     { reply_markup: mainMenu }
   );
 });
+bot.command("features", async (ctx) => {
+  await showFeatures(ctx);
+});
 
 // Feature showcase function
 async function showFeatures(ctx: MyContext) {
+  const miniAppUrl = process.env.MINI_APP_URL;
+
+  // Check if the URL is present
+  if (!miniAppUrl) {
+    await ctx.reply("Error: Mini App URL is not set. Please configure the URL in the environment variables.");
+    return;
+  }
+
+  // Log the URL for debugging
+  console.log("Mini App URL:", miniAppUrl);
+
   await ctx.reply(
-    "🚀 Key Features of FieldSales Pro:\n\n" +
+    "🚀 Key Features of Hokela 360 Pro:\n\n" +
     "1️⃣ Real-time Location Tracking\n" +
     "   - Monitor team movements\n" +
     "   - Optimize route planning\n\n" +
@@ -75,13 +89,16 @@ async function showFeatures(ctx: MyContext) {
     "Ready to explore the mini app?",
     {
       reply_markup: {
-        inline_keyboard: [[
-          { text: "Launch Mini App", web_app: { url: process.env.MINI_APP_URL || "YOUR_MINI_APP_URL" } }
-        ]]
+        inline_keyboard: [
+          [
+            { text: "Launch Mini App", web_app: { url: miniAppUrl } }
+          ]
+        ]
       }
     }
   );
 }
+
 
 // Launch mini app function
 async function launchMiniApp(ctx: MyContext) {
@@ -121,8 +138,8 @@ async function startOnboarding(ctx: MyContext) {
 bot.command("help", async (ctx) => {
   await ctx.reply(
     "🆘 Need assistance? Here's how to get help:\n\n" +
-    "📚 Documentation: YOUR_DOCS_URL\n" +
-    "📧 Support Email: support@yourcompany.com\n" +
+    "📚 Documentation: https://hokela.co.ke/\n" +
+    "📧 Support Email: support@hokela.co.ke\n" +
     "💬 Live Chat: Available in the mini app\n\n" +
     "Common commands:\n" +
     "/start - Restart the bot\n" +
