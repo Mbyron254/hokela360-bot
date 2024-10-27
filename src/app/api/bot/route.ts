@@ -103,7 +103,7 @@ async function showFeatures(ctx: MyContext) {
 // Launch mini app function
 async function launchMiniApp(ctx: MyContext) {
   await ctx.reply(
-    "🎮 Experience FieldSales Pro firsthand!\n\n" +
+    "🎮 Experience Hokela 360 Pro firsthand!\n\n" +
     "Our demo environment is loaded with sample data to help you explore all features.",
     {
       reply_markup: {
@@ -118,7 +118,7 @@ async function launchMiniApp(ctx: MyContext) {
 // Onboarding function
 async function startOnboarding(ctx: MyContext) {
   await ctx.reply(
-    "🎯 Great choice! Let's get you started with FieldSales Pro.\n\n" +
+    "🎯 Great choice! Let's get you started with Hokela 360 Pro.\n\n" +
     "1. Click the 'Open Mini App' button below\n" +
     "2. Create your team profile\n" +
     "3. Add team members\n" +
